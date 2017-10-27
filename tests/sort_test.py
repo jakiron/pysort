@@ -2,9 +2,7 @@
 This module tests different sorting methods from Sort module
 """
 import unittest
-
-from Python.sort import Sort
-
+from PySort import pysort
 
 class TestSort(unittest.TestCase):
     """
@@ -17,7 +15,7 @@ class TestSort(unittest.TestCase):
         :return:
         """
 
-        sort = Sort()
+        sort = pysort.PySort()
         self.assertEqual(sort.sort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5])
 
     def test2(self):
@@ -25,7 +23,7 @@ class TestSort(unittest.TestCase):
         This test is for bubble sort
         :return:
         """
-        sort = Sort(1)
+        sort = pysort.PySort(1)
         self.assertEqual(sort.sort([5,4,3,2,1]), [1,2,3,4,5])
 
 
@@ -34,7 +32,7 @@ class TestSort(unittest.TestCase):
         This test is for selection sort
         :return:
         """
-        sort = Sort(2)
+        sort = pysort.PySort(2)
         self.assertEqual(sort.sort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5])
 
 
@@ -43,7 +41,7 @@ class TestSort(unittest.TestCase):
         This test is for insertion sort
         :return:
         """
-        sort = Sort(3)
+        sort = pysort.PySort(3)
         self.assertEqual(sort.sort([2, 4, 3, 5, 1]), [1, 2, 3, 4, 5])
 
 if __name__ == "__main__":

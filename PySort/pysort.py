@@ -1,7 +1,7 @@
 """
 This module is a collection of sorting techniques
 """
-class Sort():
+class PySort():
     """
     This class contains the different sorting methods supported
     """
