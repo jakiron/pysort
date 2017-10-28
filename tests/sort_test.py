@@ -2,6 +2,7 @@
 This module tests different sorting methods from Sort module
 """
 import unittest
+import random
 from PySort import pysort
 
 class TestSort(unittest.TestCase):
@@ -14,9 +15,9 @@ class TestSort(unittest.TestCase):
         This test is for merge sort
         :return:
         """
-
         sort = pysort.PySort()
-        self.assertEqual(sort.sort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5])
+        input = random.sample(range(1, 10000), 9999)
+        self.assertEqual(sort.sort(input), sorted(input))
 
     def test2(self):
         """
@@ -24,7 +25,8 @@ class TestSort(unittest.TestCase):
         :return:
         """
         sort = pysort.PySort(1)
-        self.assertEqual(sort.sort([5,4,3,2,1]), [1,2,3,4,5])
+        input = random.sample(range(1, 100), 99)
+        self.assertEqual(sort.sort(input), sorted(input))
 
 
     def test3(self):
@@ -33,7 +35,8 @@ class TestSort(unittest.TestCase):
         :return:
         """
         sort = pysort.PySort(2)
-        self.assertEqual(sort.sort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5])
+        input = random.sample(range(1, 100), 99)
+        self.assertEqual(sort.sort(input), sorted(input))
 
 
     def test4(self):
@@ -42,7 +45,8 @@ class TestSort(unittest.TestCase):
         :return:
         """
         sort = pysort.PySort(3)
-        self.assertEqual(sort.sort([2, 4, 3, 5, 1]), [1, 2, 3, 4, 5])
+        input = random.sample(range(1, 100), 99)
+        self.assertEqual(sort.sort(input), sorted(input))
 
     def test5(self):
         """
@@ -50,7 +54,17 @@ class TestSort(unittest.TestCase):
         :return:
         """
         sort = pysort.PySort(4)
-        self.assertEqual(sort.sort([10, 9, 8, 7, 6, 5,4,3,2,1]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        input = random.sample(range(1, 100), 99)
+        self.assertEqual(sort.sort(input), sorted(input))
+
+    def test6(self):
+        """
+        This test is for quick sort
+        :return:
+        """
+        sort = pysort.PySort(5)
+        input = random.sample(range(1, 10000), 9999)
+        self.assertEqual(sort.sort(input), sorted(input))
 
 if __name__ == "__main__":
     test_cases = unittest.TestLoader().loadTestsFromTestCase(TestSort)

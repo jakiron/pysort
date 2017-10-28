@@ -10,7 +10,8 @@ class PySort():
         "1": "bubble_sort",
         "2": "selection_sort",
         "3": "insertion_sort",
-        "4": "shell_sort"
+        "4": "shell_sort",
+        "5": "quick_sort"
     }
 
     def __init__(self, sort_type=0):
@@ -40,7 +41,10 @@ class PySort():
         sorted_nums = []
         length = len(nums)
 
-        if length == 1:
+        if length == 0:
+            return []
+
+        elif length == 1:
             return nums
 
         mid_point = length // 2
@@ -93,19 +97,19 @@ class PySort():
         :param nums:
         :return:
         """
-        swap_element = None
         swap_index = None
         nums_length = len(nums)
 
         for i in range(nums_length-1):
             swap_index = i
-            swap_element = nums[swap_index]
-            for j in range(i, nums_length):
+            swap_element = nums[i]
+            for j in range(i+1, nums_length):
                 if nums[j] < swap_element:
                     swap_index = j
-            swap_element = nums[swap_index]
-            nums[swap_index] = nums[i]
-            nums[i] = swap_element
+                    swap_element = nums[j]
+            if i!= swap_index:
+                nums[swap_index] = nums[i]
+                nums[i] = swap_element
 
         return nums
 
@@ -158,5 +162,44 @@ class PySort():
             for start in range(sublist_length):
                 nums = gap_insertion_sort(nums, start, sublist_length)
             sublist_length //= 2
+
+        return nums
+
+    def quick_sort(self, nums):
+        """
+        quick sort
+        :param nums:
+        :return:
+        """
+
+        def partition(nums, start, end):
+            pivot = (end + start) // 2
+            left_mark = start
+            right_mark = end
+
+            pivot_value = nums[pivot]
+
+            while True:
+                while nums[left_mark] < pivot_value:
+                    left_mark += 1
+                while nums[right_mark] > pivot_value:
+                    right_mark -= 1
+
+                if left_mark >= right_mark:
+                    return right_mark
+
+                temp = nums[left_mark]
+                nums[left_mark] = nums[right_mark]
+                nums[right_mark] = temp
+
+        def quick_sort_helper(nums, start, end):
+            if start < end:
+                p = partition(nums, start, end)
+                quick_sort_helper(nums, start, p)
+                quick_sort_helper(nums, p+1, end)
+
+        start = 0
+        end = len(nums) - 1
+        quick_sort_helper(nums, start, end)
 
         return nums
