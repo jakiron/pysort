@@ -44,6 +44,14 @@ class TestSort(unittest.TestCase):
         sort = pysort.PySort(3)
         self.assertEqual(sort.sort([2, 4, 3, 5, 1]), [1, 2, 3, 4, 5])
 
+    def test5(self):
+        """
+        This test is for shell sort
+        :return:
+        """
+        sort = pysort.PySort(4)
+        self.assertEqual(sort.sort([10, 9, 8, 7, 6, 5,4,3,2,1]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
 if __name__ == "__main__":
     test_cases = unittest.TestLoader().loadTestsFromTestCase(TestSort)
     unittest.TextTestRunner(verbosity=2).run(test_cases)

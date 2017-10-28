@@ -9,7 +9,8 @@ class PySort():
         "0": "merge_sort",
         "1": "bubble_sort",
         "2": "selection_sort",
-        "3": "insertion_sort"
+        "3": "insertion_sort",
+        "4": "shell_sort"
     }
 
     def __init__(self, sort_type=0):
@@ -122,5 +123,40 @@ class PySort():
                 nums[j+1] = nums[j]
                 j -= 1
             nums[j+1] = current_element
+
+        return nums
+
+    def shell_sort(self, nums):
+        """
+        shell sort
+        :param nums:
+        :return:
+        """
+        def gap_insertion_sort(arr, start, gap):
+            """
+            gap insertion sort
+            :param arr:
+            :param start:
+            :param gap:
+            :return:
+            """
+            arr_length = len(arr)
+
+            for index in range(start+gap, arr_length, gap):
+                current_element = arr[index]
+                position = index - gap
+                while position >= 0 and current_element < arr[position]:
+                    arr[position + gap] = arr[position]
+                    position -= gap
+                arr[position + gap] = current_element
+
+            return arr
+
+        sublist_length = len(nums) // 2
+
+        while sublist_length > 0:
+            for start in range(sublist_length):
+                nums = gap_insertion_sort(nums, start, sublist_length)
+            sublist_length //= 2
 
         return nums
